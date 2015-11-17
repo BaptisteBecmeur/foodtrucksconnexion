@@ -2,8 +2,7 @@ class Reservation < ActiveRecord::Base
   belongs_to :user
   belongs_to :foodtruck
 
-<<<<<<< HEAD
-=======
+
   validates :date, presence: true
   validates :price, presence: true
   validates :comment, presence: true
@@ -11,7 +10,6 @@ class Reservation < ActiveRecord::Base
   validates :user_id, presence: true
   validates :foodtruck_id, presence: true
 
->>>>>>> c1918c6470e30b718060b8942d930cbe3761a9fc
 end
 
 
