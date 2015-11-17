@@ -1,1 +1,16 @@
+<div class="formone">
+  <div class="text-center">
+    <h1>Créez votre annonce</h1>
+  </div>
+  <%= simple_form_for @foodtruck do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :name %>
+  <%= f.input :image %>
+  <%= f.submit "Créer", class: "btn btn-primary" %>
+  <% end %>
 
+  <hr>
+  <h4>
+    <%= link_to '< Retour', :back %>
+  </h4>
+</div>
