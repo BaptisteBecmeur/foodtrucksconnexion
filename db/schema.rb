@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117103444) do
+ActiveRecord::Schema.define(version: 20151117110919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,32 @@ ActiveRecord::Schema.define(version: 20151117103444) do
   end
 
   add_index "foodtrucks", ["user_id"], name: "index_foodtrucks_on_user_id", using: :btree
+
+  create_table "messages", force: :cascade do |t|
+    t.datetime "date"
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "foodtruck_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "messages", ["foodtruck_id"], name: "index_messages_on_foodtruck_id", using: :btree
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+
+  create_table "reservations", force: :cascade do |t|
+    t.date     "date"
+    t.float    "price"
+    t.string   "comment"
+    t.integer  "rating"
+    t.integer  "user_id"
+    t.integer  "foodtruck_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "reservations", ["foodtruck_id"], name: "index_reservations_on_foodtruck_id", using: :btree
+  add_index "reservations", ["user_id"], name: "index_reservations_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -46,4 +72,8 @@ ActiveRecord::Schema.define(version: 20151117103444) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "foodtrucks", "users"
+  add_foreign_key "messages", "foodtrucks"
+  add_foreign_key "messages", "users"
+  add_foreign_key "reservations", "foodtrucks"
+  add_foreign_key "reservations", "users"
 end
