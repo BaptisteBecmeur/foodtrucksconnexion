@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  has_many :foodtrucks
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
@@ -18,4 +18,5 @@ class User < ActiveRecord::Base
       user.token_expiry = Time.at(auth.credentials.expires_at)
     end
   end
+
 end
