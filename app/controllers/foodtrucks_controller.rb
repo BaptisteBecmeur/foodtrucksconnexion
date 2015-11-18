@@ -21,6 +21,11 @@ class FoodtrucksController < ApplicationController
     @foodtruck = Foodtruck.new
   end
 
+  def destroy
+    @foodtruck = Foodtruck.new(foodtruck_params)
+    @foodtruck.destroy
+  end
+
   private
 
   def foodtruck_params
