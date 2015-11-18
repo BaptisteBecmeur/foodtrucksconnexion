@@ -1,2 +1,19 @@
 <h1>Foodtrucks#index</h1>
-<p>Find me in app/views/foodtrucks/index.html.erb</p>
+<div class="text-center">
+  <h1>Our Cocktails</h1>
+  <div class="container">
+    <div class="row">
+      <% @foodtrucks.each do |foodtruck| %>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <h3>
+          <%= link_to foodtruck.name, foodtruck_path(foodtruck) %>
+        </h3>
+        <%= cl_image_tag foodtruck.image, transformation: :thumbnail %>
+      </div>
+      <% end %>
+    </div>
+    <h4>
+      <%= link_to 'Créer votre annonce', new_foodtruck_path %>
+    </h4>
+  </div>
+</div>

@@ -21,7 +21,10 @@ before_action :set_foodtruck, only: [:show]
     else
       render 'foodtrucks/show'
     end
+
   end
+
+
 
   private
 
