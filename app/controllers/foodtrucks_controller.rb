@@ -8,6 +8,15 @@ class FoodtrucksController < ApplicationController
     @user = User.new
   end
 
+  def create
+   @foodtruck = Foodtruck.new(foodtruck_params)
+    if @foodtruck.save
+      redirect_to foodtruck_path(@foodtruck)
+    else
+      render :new
+    end
+  end
+
   def new
     @foodtruck = Foodtruck.new
   end
