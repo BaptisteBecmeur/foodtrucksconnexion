@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :foodtrucks, only: [:index, :show, :new, :create]
   get 'reservations/index'
 
   get 'reservations/show'
@@ -15,7 +16,6 @@ Rails.application.routes.draw do
 
   get 'messages/create'
 
-  resources :foodtrucks, only: [:index, :show, :new]
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root 'foodtrucks#index'
 end
