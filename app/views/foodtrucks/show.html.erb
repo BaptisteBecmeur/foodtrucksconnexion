@@ -1,2 +1,8 @@
-<%= @foodtruck.inspect %>
-<%= cl_image_tag @foodtruck.image %>
+<div class="text-center">
+<h1><%= @foodtruck.name %></h1>
+<%= cl_image_tag @foodtruck.image, width:"80%"  %>
+<hr>
+        <h4>
+          <%= link_to '< Retour', :back %>
+        </h4>
+</div>
