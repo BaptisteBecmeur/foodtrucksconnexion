@@ -5,7 +5,7 @@ class FoodtrucksController < ApplicationController
 
   def show
     @foodtruck = Foodtruck.find(params[:id])
-    @user = User.new
+    @reservation = Reservation.new
   end
 
   def create
