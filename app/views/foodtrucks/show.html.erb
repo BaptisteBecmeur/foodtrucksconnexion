@@ -1,8 +1,12 @@
 <div class="text-center">
   <h1>Réserver votre foodtruck</h1>
   <h1><%= @foodtruck.name %></h1>
-  <%= cl_image_tag @foodtruck.image, width:"80%" %>
-</div>
+  <%= cl_image_tag @foodtruck.image, width:"80%"  %>
+  <%= link_to foodtruck_path(@foodtruck),
+    method: :delete,
+    data: { confirm: "Are you sure?" } do %>
+    <i class="glyphicon glyphicon-trash"></i>
+  <% end %>
   <hr>
   <div class="container">
     <div class="row">
