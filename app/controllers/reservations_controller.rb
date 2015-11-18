@@ -1,30 +1,22 @@
 class ReservationsController < ApplicationController
 
-before_action :set_foodtruck, only: [:show]
+  before_action :set_foodtruck, only: [:show, :new, :create]
 
   def index
     @reservations = Reservation.all
   end
 
-  def show
-    @reservation = Reservation.find(params[:id])
-  end
-
-  def new
-    @reservation = Reservation.new
-  end
-
   def create
-    @reservation = Reservation.new()
+    @reservation = @foodtruck.reservations.new(reservation_params)
+    @reservation.user = current_user
+
     if @reservation.save
-      redirect_to message_path(@user)
+      # TODO
+      redirect_to new_message_path
     else
       render 'foodtrucks/show'
     end
-
   end
-
-
 
   private
 
@@ -33,7 +25,7 @@ before_action :set_foodtruck, only: [:show]
   end
 
   def reservation_params
-    params.require(:reservation).permit(:date, :rating, :price, :comment, :user_id, :foodtruck_id)
+    params.require(:reservation).permit(:date, :price, :comment)
   end
 
 end

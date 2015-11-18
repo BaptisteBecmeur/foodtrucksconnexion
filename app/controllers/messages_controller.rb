@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = @message.users.new(params[:id])
+    @message = @message.new(params[:id])
     if @message.save
     redirect_to message_path(@message)
     else

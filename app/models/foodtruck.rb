@@ -1,5 +1,7 @@
 class Foodtruck < ActiveRecord::Base
   belongs_to :user
+  has_many :reservations
+  has_many :messages
 
   CATEGORIES = ["bagel", "burger", "chicken"]
 
