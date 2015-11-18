@@ -1,23 +1,28 @@
 <div class="text-center">
+  <h1>Réserver votre foodtruck</h1>
   <h1><%= @foodtruck.name %></h1>
-  <%= cl_image_tag @foodtruck.image, width:"80%"  %>
-  <hr>
-
-  <div class="formtwo">
-    <div class="text-center">
-      <h1>Réserver votre foodtruck</h1>
-    </div>
-    <%= simple_form_for [@foodtruck, @reservation] do |f| %>
-    <%= f.error_notification %>
-    <%= f.input :date %>
-    <%= f.input :price %>
-    <%= f.input :comment %>
-    <%= f.submit "Créer", class: "btn btn-primary" %>
-    <% end %>
-    <hr>
-    <h4>
-      <%= link_to '< Retour', :back %>
-    </h4>
-  </div>
+  <%= cl_image_tag @foodtruck.image, width:"80%" %>
 </div>
+  <hr>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-offset-3">
+        <%= simple_form_for [@foodtruck, @reservation] do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :date %>
+        <%= f.input :price %>
+        <%= f.input :comment %>
+        <%= f.submit "Créer", class: "btn btn-primary" %>
+        <% end %>
+        <hr>
+        <h4>
+          <%= link_to '< Retour', :back %>
+        </h4>
+      </div>
+    </diV>
+  </div>
+
+
+
+
 
