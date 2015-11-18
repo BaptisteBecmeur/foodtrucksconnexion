@@ -3,12 +3,13 @@
     <div class="col-xs-12 col-sm-4 col-md-offset-4">
       <div class="formone">
         <div class="text-center">
-          <h1>Créez votre annonce</h1>
+          <h2>Créez votre annonce</h2>
         </div>
         <%= simple_form_for @foodtruck do |f| %>
         <%= f.error_notification %>
         <%= f.input :name %>
         <%= f.input :image %>
+
         <%= f.input :category, collection: Foodtruck::CATEGORIES, selected: Foodtruck::CATEGORIES.first %>
         <%= f.submit "Créer", class: "btn btn-primary" %>
         <% end %>
