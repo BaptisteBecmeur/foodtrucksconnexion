@@ -2,6 +2,9 @@
   <h1>Réserver votre foodtruck</h1>
   <h1><%= @foodtruck.name %></h1>
   <%= cl_image_tag @foodtruck.image, width:"80%"  %>
+  <p>
+    <%= @foodtruck.address %>
+  </p>
   <%= link_to foodtruck_path(@foodtruck),
   method: :delete,
   data: { confirm: "Are you sure?" } do %>
@@ -22,20 +25,29 @@
         <h4>
           <%= link_to '< Retour', :back %>
         </h4>
-        <% content_for(:after_js) do %>
-        <%= javascript_tag do %>
-        $(document).ready(function() {
-        <!-- alert('<%= j @alert_message %>');
-      }); -->
-      var coord = <%= raw @foodtruck_coordinates %>;
-      alert('Foodtruck coordinates are ' + coord.lat + ', ' + coord.lng);
-      });
-    <% end %>
-    <% end %>
+      </div>
+    </div>
   </div>
-</diV>
+
+  <hr>
+
+  <div id="map" style="width: 100%; height: 600px;"></div>
+
 </div>
 
+
+<% content_for(:after_js) do %>
+  <script>
+    $(document).on('ready', function() {
+      handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function(){
+        markers = handler.addMarkers(<%= raw @markers.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+      });
+    })
+  </script>
+<% end %>
 
 
 

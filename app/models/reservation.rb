@@ -1,6 +1,6 @@
 class Reservation < ActiveRecord::Base
   belongs_to :user
-  belongs_to :foodtruck
+  belongs_to :foodtruck, dependent: :destroy
 
   validates :date, presence: true
   validates :price, presence: true
