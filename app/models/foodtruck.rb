@@ -11,4 +11,6 @@ class Foodtruck < ActiveRecord::Base
   # validates :user_id, presence: true
 
   mount_uploader :image, ImageUploader
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 end
