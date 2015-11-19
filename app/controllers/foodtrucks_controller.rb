@@ -2,6 +2,8 @@ class FoodtrucksController < ApplicationController
 
   before_filter :authenticate_user!, except: [:index]
 
+  before_action :set_foodtruck, only: [:show, :destroy]
+
   def index
     @foodtrucks = Foodtruck.all
 
@@ -13,7 +15,7 @@ class FoodtrucksController < ApplicationController
   end
 
   def show
-    @foodtruck = Foodtruck.find(params[:id])
+
     @reservation = Reservation.new
     @alert_message = "You are viewing #{@foodtruck.name}"
     # @foodtruck_coordinates = { lat: @foodtruck.latitude, lng: @foodtruck.longitude }
@@ -24,7 +26,7 @@ class FoodtrucksController < ApplicationController
   end
 
   def create
-   @foodtruck = Foodtruck.new(foodtruck_params)
+    @foodtruck = Foodtruck.new(foodtruck_params)
     if @foodtruck.save
       redirect_to foodtruck_path(@foodtruck)
     else
@@ -37,17 +39,18 @@ class FoodtrucksController < ApplicationController
   end
 
   def destroy
-    @foodtruck = Foodtruck.find(params[:id])
-      if @foodtruck.present?
     @foodtruck.destroy
-  end
-    redirect_to new_foodtruck_path
+    redirect_to foodtrucks_path
   end
 
   private
 
   def foodtruck_params
-    params.require(:foodtruck).permit(:name, :image, :category, :phone_number, :user_id)
+    params.require(:foodtruck).permit(:name, :image, :category, :user_id)
+  end
+
+  def set_foodtruck
+    @foodtruck = Foodtruck.find(params[:id])
   end
 end
 
