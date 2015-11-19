@@ -1,6 +1,6 @@
 <div class="text-center">
-  <h1>Hello, we are <%= @foodtruck.name %></h1>
-  <h3><%= @foodtruck.category %></h3>
+  <h1>Hello, we are <%= @foodtruck.name.capitalize %></h1>
+  <h3>Nous sommes les spécialistes du <%= @foodtruck.category.upcase %></h3>
   <%= cl_image_tag @foodtruck.image, width:"80%" %>
 </div>
 <hr>
