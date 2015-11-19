@@ -1,5 +1,5 @@
 <div class="text-center">
-  <h1 style="color: red;">Trouver votre foodtruck</h1>
+  <h1>Trouver votre foodtruck</h1>
   <div class="container">
     <div class="row">
       <% @foodtrucks.each do |foodtruck| %>
@@ -8,7 +8,8 @@
           <%= link_to foodtruck.name, foodtruck_path(foodtruck) %>
         </h3>
         <%= cl_image_tag foodtruck.image, transformation: :thumbnail %>
-        <%= link_to 'Réserver', foodtruck_path(foodtruck), class: "btn btn-primary" %>
+
+        <%= link_to 'Réserver votre food truck', foodtruck_path(foodtruck), class: "btn btn-primary" %>
       </div>
       <% end %>
     </div>
