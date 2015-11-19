@@ -8,7 +8,8 @@
           <%= link_to foodtruck.name, foodtruck_path(foodtruck) %>
         </h3>
         <%= cl_image_tag foodtruck.image, transformation: :thumbnail %>
-        <%= link_to 'Réserver', foodtruck_path(foodtruck), class: "btn btn-primary" %>
+
+        <%= link_to 'Réserver votre food truck', foodtruck_path(foodtruck), class: "btn btn-primary" %>
       </div>
       <% end %>
     </div>
