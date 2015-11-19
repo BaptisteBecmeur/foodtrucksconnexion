@@ -3,9 +3,9 @@
   <h1><%= @foodtruck.name %></h1>
   <%= cl_image_tag @foodtruck.image, width:"80%"  %>
   <%= link_to foodtruck_path(@foodtruck),
-    method: :delete,
-    data: { confirm: "Are you sure?" } do %>
-    <i class="glyphicon glyphicon-trash"></i>
+  method: :delete,
+  data: { confirm: "Are you sure?" } do %>
+  <i class="glyphicon glyphicon-trash"></i>
   <% end %>
   <hr>
   <div class="container">
@@ -22,9 +22,19 @@
         <h4>
           <%= link_to '< Retour', :back %>
         </h4>
-      </div>
-    </diV>
+        <% content_for(:after_js) do %>
+        <%= javascript_tag do %>
+        $(document).ready(function() {
+        <!-- alert('<%= j @alert_message %>');
+      }); -->
+      var coord = <%= raw @foodtruck_coordinates %>;
+      alert('Foodtruck coordinates are ' + coord.lat + ', ' + coord.lng);
+      });
+    <% end %>
+    <% end %>
   </div>
+</diV>
+</div>
 
 
 

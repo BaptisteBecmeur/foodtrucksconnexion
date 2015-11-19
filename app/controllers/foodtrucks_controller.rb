@@ -6,6 +6,8 @@ class FoodtrucksController < ApplicationController
   def show
     @foodtruck = Foodtruck.find(params[:id])
     @reservation = Reservation.new
+    @alert_message = "You are viewing #{@foodtruck.name}"
+    @foodtruck_coordinates = { lat: @foodtruck.lat, lng: @foodtruck.lng }
   end
 
   def create
