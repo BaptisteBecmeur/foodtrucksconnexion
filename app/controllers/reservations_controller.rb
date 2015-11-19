@@ -2,8 +2,19 @@ class ReservationsController < ApplicationController
 
   before_action :set_foodtruck, only: [:show, :new, :create]
 
+  def show
+    @reservation = Reservation.find(params[:id])
+    @alert_message = "You are viewing #{@reservation.foodtruck}"
+  end
+
   def index
     @reservations = Reservation.all
+
+    # Let's DYNAMICALLY build the markers for the view.
+    @markers = Gmaps4rails.build_markers(@reservations) do |reservation, marker|
+      marker.lat reservation.latitude
+      marker.lng reservation.longitude
+    end
   end
 
   def create
