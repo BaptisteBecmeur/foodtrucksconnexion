@@ -1,5 +1,7 @@
 class FoodtrucksController < ApplicationController
 
+  before_filter :authenticate_user!, except: [:index]
+
   def index
     @foodtrucks = Foodtruck.all
   end
@@ -33,7 +35,7 @@ class FoodtrucksController < ApplicationController
   private
 
   def foodtruck_params
-    params.require(:foodtruck).permit(:name, :image, :category, :user_id)
+    params.require(:foodtruck).permit(:name, :image, :category, :phone_number, :user_id)
   end
 end
 

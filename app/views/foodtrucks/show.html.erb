@@ -1,12 +1,15 @@
 <div class="text-center">
-  <h1>Réserver votre foodtruck</h1>
-  <h1><%= @foodtruck.name %></h1>
-    <%= cl_image_tag @foodtruck.image, width:"80%"  %>
+  <h1>Hello, we are <%= @foodtruck.name %></h1>
+  <h3><%= @foodtruck.category %></h3>
+  <%= cl_image_tag @foodtruck.image, width:"80%" %>
 </div>
 <hr>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-offset-3">
+      <div class="text-center">
+      <h4>Réservez votre foodtruck <%= @foodtruck.name %></h4>
+      </div>
       <%= simple_form_for [@foodtruck, @reservation] do |f| %>
       <%= f.error_notification %>
       <%= f.input :date %>

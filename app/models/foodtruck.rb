@@ -12,7 +12,7 @@ class Foodtruck < ActiveRecord::Base
   # after_validation :geocode, if: :address_changed?
 
   # validates :city, presence: true, uniqueness: true
-  # validates :phone_number, presence: true
+  validates :phone_number, presence: true
   # validates :user_id, presence: true
 
   mount_uploader :image, ImageUploader
