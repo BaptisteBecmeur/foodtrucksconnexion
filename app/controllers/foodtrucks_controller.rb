@@ -3,15 +3,13 @@ class FoodtrucksController < ApplicationController
   before_filter :authenticate_user!, except: [:index]
 
   def index
-
-    if params[:search] and not params[:search][:address].blank?
-      @foodtrucks = Foodtruck.near(params[:search][:address], 100)
-      @search_city = params[:search][:address]
+    if params[:search] and not params[:search][:city].blank?
+      @foodtrucks = Foodtruck.near(params[:search][:city], 100)
+      @search_city = params[:search][:city]
     else
       @foodtrucks = Foodtruck.all
     end
     @foodtrucks_map = @foodtrucks.where("latitude is not null and longitude is not null")
-    end
       # manage search form
       # geolocalized request => Foodtruck.near(address, radius en km)
       # else
@@ -64,3 +62,4 @@ class FoodtrucksController < ApplicationController
   end
 
 
+end

@@ -1,9 +1,14 @@
 <div class="bg-image">
-    <%= link_to "Trouver votre foodtruck", foodtrucks_path, class: "btn btn-primary btn-home btn-lg" %>
+  <%= link_to "Trouver votre foodtruck", foodtrucks_path, class: "btn btn-primary btn-home btn-lg" %>
 </div>
 
-<%= simple_form_for :search, url: foodtrucks_path, method: :get do |f| %>
-  <%= f.input :city %>
-  <%= f.submit "Search" %>
-<% end %>
-
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-offset-3">
+      <%= simple_form_for :search, url: foodtrucks_path, method: :get, :html => { :class => 'form-inline' } do |f| %>
+        <%= f.input :city, label: false, placeholder: "Ville" %>
+        <%= f.submit "Rechercher",  class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
