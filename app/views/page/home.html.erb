@@ -1,4 +1,9 @@
 <div class="bg-image">
-    <%= link_to "Trouver votre foodtruck", foodtrucks_path, class: "btn btn-primary btn-home" %>
+    <%= link_to "Trouver votre foodtruck", foodtrucks_path, class: "btn btn-primary btn-home btn-lg" %>
 </div>
+
+<%= simple_form_for :search, url: foodtrucks_path, method: :get do |f| %>
+  <%= f.input :city %>
+  <%= f.submit "Search" %>
+<% end %>
 
