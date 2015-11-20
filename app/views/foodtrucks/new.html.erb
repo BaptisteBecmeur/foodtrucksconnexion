@@ -8,6 +8,7 @@
         <%= simple_form_for @foodtruck do |f| %>
         <%= f.error_notification %>
         <%= f.input :name %>
+        <%= f.input :address %>
         <%= f.input :image %>
         <%= f.input :category, collection: Foodtruck::CATEGORIES, selected: Foodtruck::CATEGORIES.first %>
         <%= f.submit "Créer", class: "btn btn-primary" %>
