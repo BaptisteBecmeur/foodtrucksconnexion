@@ -4,33 +4,40 @@
     <div class="row">
       <% @foodtrucks.each do |foodtruck| %>
       <div class="col-xs-12 col-sm-6 col-md-4">
-        <h3>
-          <%= link_to foodtruck.name, foodtruck_path(foodtruck) %>
-        </h3>
-        <%= cl_image_tag foodtruck.image, transformation: :thumbnail %>
 
-        <%= link_to 'Réserver votre food truck', foodtruck_path(foodtruck), class: "btn btn-primary" %>
+        <div class="style-collums">
+          <%= link_to foodtruck_path(foodtruck) do %>
+            <h3>
+              <%= foodtruck.name %>
+            </h3>
+            <%= cl_image_tag foodtruck.image, transformation: :thumbnail %>
+
+            <%= link_to 'Réserver votre food truck', foodtruck_path(foodtruck), class: "btn btn-primary" %>
+          <% end %>
+        </div>
+
       </div>
       <% end %>
     </div>
     <h4>
       <%= link_to 'Ajoutez votre foodtruck', new_foodtruck_path, class: "btn btn-success"%>
     </h4>
-
     <div id="map" style="width: 100%; height: 600px;"></div>
 
-<% content_for(:after_js) do %>
-  <%= javascript_tag do %>
-    $(document).on('ready', function() {
+
+
+      <% content_for(:after_js) do %>
+      <%= javascript_tag do %>
+      $(document).on('ready', function() {
       handler = Gmaps.build('Google');
       handler.buildMap({ internal: { id: 'map' } }, function(){
-        markers = handler.addMarkers(<%= raw @markers.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
+      markers = handler.addMarkers(<%= raw @markers.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
       });
-    })
-  <% end %>
-<% end %>
+      }     )
+      <% end %>
+      <% end %>
 
   </div>
 </div>

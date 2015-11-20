@@ -5,10 +5,8 @@
   <p>
     <%= @foodtruck.address %>
   </p>
-  <%= link_to foodtruck_path(@foodtruck),
-  method: :delete,
-  data: { confirm: "Are you sure?" } do %>
-  <i class="glyphicon glyphicon-trash"></i>
+  <%= link_to foodtruck_path(@foodtruck), method: :delete, data: { confirm: "Are you sure?" } do %>
+    <i class="glyphicon glyphicon-trash"></i>
   <% end %>
   <hr>
   <div class="container">
