@@ -3,7 +3,7 @@ class Foodtruck < ActiveRecord::Base
   has_many :reservations, dependent: :destroy
   has_many :messages
 
-  CATEGORIES = ["bagel", "burger", "chicken"]
+  CATEGORIES = ["bagel", "burger", "chicken","wrap"]
 
   validates :name, presence: true, uniqueness: true
   validates :image, presence: true

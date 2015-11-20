@@ -23,7 +23,7 @@ class ReservationsController < ApplicationController
 
     if @reservation.save
       # TODO
-      redirect_to new_message_path
+      redirect_to new_foodtruck_reservation_path
     else
       render 'foodtrucks/show'
     end
@@ -36,7 +36,7 @@ class ReservationsController < ApplicationController
   end
 
   def reservation_params
-    params.require(:reservation).permit(:date, :price, :comment)
+    params.require(:reservation).permit(:date, :people, :comment)
   end
 
 end
