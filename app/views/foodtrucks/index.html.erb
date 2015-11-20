@@ -5,6 +5,7 @@
       <% @foodtrucks.each do |foodtruck| %>
       <div class="col-xs-12 col-sm-6 col-md-4">
 
+
         <div class="style-collums">
           <%= link_to foodtruck_path(foodtruck) do %>
             <h3>
@@ -20,8 +21,9 @@
       <% end %>
     </div>
     <h4>
-      <%= link_to 'Créer votre annonce', new_foodtruck_path, class: "btn btn-success"%>
+      <%= link_to 'Ajoutez votre foodtruck', new_foodtruck_path, class: "btn btn-success"%>
     </h4>
+
     <div id="map" style="width: 100%; height: 600px;"></div>
 
 

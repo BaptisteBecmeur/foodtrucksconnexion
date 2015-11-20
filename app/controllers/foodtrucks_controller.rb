@@ -5,9 +5,18 @@ class FoodtrucksController < ApplicationController
   before_action :set_foodtruck, only: [:show, :destroy]
 
   def index
-    @foodtrucks = Foodtruck.all
-
-    # Let's DYNAMICALLY build the markers for the view.
+    if params[:search] and not params[:search][:city].blank?
+      @foodtrucks = Foodtruck.near(params[:search][:city], 100)
+      @search_city = params[:search][:city]
+    else
+      @foodtrucks = Foodtruck.all
+    end
+    @foodtrucks_map = @foodtrucks.where("latitude is not null and longitude is not null")
+      # manage search form
+      # geolocalized request => Foodtruck.near(address, radius en km)
+      # else
+      # renvoyer tout
+      # Let's DYNAMICALLY build the markers for the view.
     @markers = Gmaps4rails.build_markers(@foodtrucks) do |foodtruck, marker|
       marker.lat foodtruck.latitude
       marker.lng foodtruck.longitude
@@ -47,10 +56,11 @@ class FoodtrucksController < ApplicationController
 
   def foodtruck_params
     params.require(:foodtruck).permit(:name, :image, :category, :user_id)
+
   end
 
   def set_foodtruck
     @foodtruck = Foodtruck.find(params[:id])
+
   end
 end
-
